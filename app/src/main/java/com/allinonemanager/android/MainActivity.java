@@ -472,7 +472,7 @@ public final class MainActivity extends Activity {
             if (builder.length() > 0) {
                 builder.append('\n');
             }
-            builder.append(getString(R.string.summary_time_zone_format, client.timeZoneId));
+            builder.append(getString(R.string.summary_time_zone_format, displayTimeZone(client.timeZoneId)));
         }
         return builder.length() == 0 ? getString(R.string.summary_no_phone_email) : builder.toString();
     }
@@ -486,11 +486,15 @@ public final class MainActivity extends Activity {
 
     private String formatSessionDetails(ClientSession session, ZoneId clientZone) {
         StringBuilder builder = new StringBuilder();
-        builder.append(getString(R.string.session_time_zone_format, clientZone.getId()));
+        builder.append(getString(R.string.session_time_zone_format, displayTimeZone(clientZone.getId())));
         if (session.sessionNotes != null && !session.sessionNotes.trim().isEmpty()) {
             builder.append('\n').append(session.sessionNotes.trim());
         }
         return builder.toString();
+    }
+
+    private String displayTimeZone(String zoneId) {
+        return TimeZoneSupport.displayName(zoneId, AppLanguage.currentLocale(this));
     }
 
     private ZoneId selectedClientZone() {
@@ -522,7 +526,7 @@ public final class MainActivity extends Activity {
         ArrayAdapter<TimeZoneSupport.TimeZoneOption> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
-                TimeZoneSupport.availableZoneOptions());
+                TimeZoneSupport.availableZoneOptions(AppLanguage.currentLocale(this)));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setSelection(TimeZoneSupport.indexOf(selectedZoneId));

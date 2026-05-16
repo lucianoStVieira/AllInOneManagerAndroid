@@ -1,29 +1,36 @@
 package com.allinonemanager.android;
 
+import android.icu.text.TimeZoneNames;
+
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 final class TimeZoneSupport {
     static final String DEFAULT_ZONE_ID = "America/Sao_Paulo";
 
-    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     private static final List<String> AVAILABLE_ZONE_IDS = buildAvailableZoneIds();
 
     private TimeZoneSupport() {
     }
 
-    static List<TimeZoneOption> availableZoneOptions() {
+    static List<TimeZoneOption> availableZoneOptions(Locale locale) {
         Instant now = Instant.now();
         List<TimeZoneOption> options = new ArrayList<>();
         for (String zoneId : AVAILABLE_ZONE_IDS) {
-            options.add(new TimeZoneOption(zoneId, displayLabel(zoneId, now)));
+            options.add(new TimeZoneOption(zoneId, displayLabel(zoneId, now, locale)));
         }
         return Collections.unmodifiableList(options);
+    }
+
+    static String displayName(String zoneId, Locale locale) {
+        Instant now = Instant.now();
+        ZoneId zone = zoneId(zoneId);
+        return "(" + formatOffset(zone.getRules().getOffset(now)) + ") " + localizedCityName(zone, locale);
     }
 
     static int indexOf(String zoneId) {
@@ -67,13 +74,29 @@ final class TimeZoneSupport {
         return Collections.unmodifiableList(zones);
     }
 
-    private static String displayLabel(String zoneId, Instant now) {
+    private static String displayLabel(String zoneId, Instant now, Locale locale) {
         ZoneId zone = zoneId(zoneId);
         ZoneOffset offset = zone.getRules().getOffset(now);
-        return "(" + formatOffset(offset) + ") "
-                + zone.getId()
-                + " - "
-                + TIME_FORMAT.format(now.atZone(zone));
+        return "(" + formatOffset(offset) + ") " + localizedCityName(zone, locale);
+    }
+
+    private static String localizedCityName(ZoneId zone, Locale locale) {
+        Locale displayLocale = locale == null || locale.getLanguage().isEmpty()
+                ? Locale.getDefault()
+                : locale;
+
+        String city = TimeZoneNames.getInstance(displayLocale).getExemplarLocationName(zone.getId());
+        if (city != null && !city.trim().isEmpty()) {
+            return city;
+        }
+
+        return cityFromZoneId(zone.getId());
+    }
+
+    private static String cityFromZoneId(String zoneId) {
+        int separator = zoneId.lastIndexOf('/');
+        String city = separator >= 0 ? zoneId.substring(separator + 1) : zoneId;
+        return city.replace('_', ' ');
     }
 
     private static String formatOffset(ZoneOffset offset) {
