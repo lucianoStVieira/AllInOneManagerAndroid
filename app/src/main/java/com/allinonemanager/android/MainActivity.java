@@ -154,23 +154,15 @@ public final class MainActivity extends Activity {
         txtNotes.setGravity(Gravity.TOP | Gravity.START);
         root.addView(txtNotes);
 
-        LinearLayout primaryClientButtons = horizontal();
-        Button addClient = UiKit.primaryButton(this, R.string.action_add, R.drawable.ic_add_24);
-        addClient.setOnClickListener(v -> addClient());
-        Button updateClient = UiKit.neutralButton(this, R.string.action_update, R.drawable.ic_edit_24);
-        updateClient.setOnClickListener(v -> updateClient());
-        addWeighted(primaryClientButtons, addClient);
-        addWeighted(primaryClientButtons, updateClient);
-        root.addView(primaryClientButtons);
-
-        LinearLayout secondaryClientButtons = horizontal();
-        Button deleteClient = UiKit.dangerButton(this, R.string.action_delete, R.drawable.ic_delete_24);
+        LinearLayout clientButtons = horizontal();
+        clientButtons.setGravity(Gravity.CENTER_VERTICAL);
+        Button saveClient = UiKit.compactPrimaryButton(this, R.string.action_save, R.drawable.ic_save_24);
+        saveClient.setOnClickListener(v -> saveClient());
+        Button deleteClient = UiKit.compactDangerButton(this, R.string.action_delete, R.drawable.ic_delete_24);
         deleteClient.setOnClickListener(v -> deleteClient());
-        Button clear = UiKit.neutralButton(this, R.string.action_clear, R.drawable.ic_clear_24);
-        clear.setOnClickListener(v -> clearClientForm());
-        addWeighted(secondaryClientButtons, deleteClient);
-        addWeighted(secondaryClientButtons, clear);
-        root.addView(secondaryClientButtons);
+        addCompact(clientButtons, saveClient);
+        addCompact(clientButtons, deleteClient);
+        root.addView(clientButtons);
 
         addSectionTitle(root, R.string.section_clients, R.drawable.ic_search_24);
         txtSearch = input(R.string.hint_search_clients, InputType.TYPE_CLASS_TEXT, R.drawable.ic_search_24);
@@ -210,10 +202,10 @@ public final class MainActivity extends Activity {
         root.addView(txtSessionNotes);
 
         LinearLayout sessionButtons = horizontal();
-        Button scheduleSession = UiKit.primaryButton(this, R.string.action_schedule, R.drawable.ic_calendar_24);
+        Button scheduleSession = UiKit.primaryTextButton(this, R.string.action_schedule, R.drawable.ic_calendar_24);
         scheduleSession.setOnClickListener(v -> scheduleSession());
-        Button clearSession = UiKit.neutralButton(this, R.string.action_clear_notes, R.drawable.ic_clear_24);
-        clearSession.setOnClickListener(v -> txtSessionNotes.setText(""));
+        Button clearSession = UiKit.neutralTextButton(this, R.string.action_cancel, R.drawable.ic_clear_24);
+        clearSession.setOnClickListener(v -> clearSessionForm());
         addWeighted(sessionButtons, scheduleSession);
         addWeighted(sessionButtons, clearSession);
         root.addView(sessionButtons);
@@ -251,6 +243,14 @@ public final class MainActivity extends Activity {
         Client client = db.getClient(id);
         if (client != null) {
             selectClient(client);
+        }
+    }
+
+    private void saveClient() {
+        if (selectedClientId == null) {
+            addClient();
+        } else {
+            updateClient();
         }
     }
 
@@ -319,6 +319,13 @@ public final class MainActivity extends Activity {
         selectedClientLabel.setText(R.string.text_select_client_schedule);
         sessionsList.removeAllViews();
         txtFullName.requestFocus();
+    }
+
+    private void clearSessionForm() {
+        txtSessionDate.setText(LocalDate.now().format(DATE_FORMAT));
+        txtSessionTime.setText("09:00");
+        txtDurationMinutes.setText("50");
+        txtSessionNotes.setText("");
     }
 
     private void selectClient(Client client) {
@@ -624,6 +631,12 @@ public final class MainActivity extends Activity {
                 0,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 1f);
+        params.setMargins(dp(3), dp(6), dp(3), dp(6));
+        row.addView(view, params);
+    }
+
+    private void addCompact(LinearLayout row, View view) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dp(42), dp(42));
         params.setMargins(dp(3), dp(6), dp(3), dp(6));
         row.addView(view, params);
     }

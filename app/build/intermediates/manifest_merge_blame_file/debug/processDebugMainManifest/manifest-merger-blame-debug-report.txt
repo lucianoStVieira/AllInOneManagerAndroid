@@ -41,53 +41,54 @@
 23-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:12:9-50
 24        android:supportsRtl="true"
 24-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:13:9-35
-25        android:theme="@style/AppTheme" >
-25-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:14:9-40
-26        <activity
-26-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:15:9-17:52
-27            android:name="com.allinonemanager.android.SettingsActivity"
-27-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:16:13-45
-28            android:screenOrientation="portrait" />
-28-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:17:13-49
-29        <activity
-29-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:19:9-27:20
-30            android:name="com.allinonemanager.android.MainActivity"
-30-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:20:13-41
-31            android:exported="true"
-31-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:21:13-36
-32            android:screenOrientation="portrait" >
-32-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:22:13-49
-33            <intent-filter>
-33-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:23:13-26:29
-34                <action android:name="android.intent.action.MAIN" />
-34-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:24:17-69
-34-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:24:25-66
-35
-36                <category android:name="android.intent.category.LAUNCHER" />
-36-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:25:17-77
-36-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:25:27-74
-37            </intent-filter>
-38        </activity>
-39
-40        <receiver
-40-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:29:9-31:40
-41            android:name="com.allinonemanager.android.SessionReminderReceiver"
-41-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:30:13-52
-42            android:exported="false" />
-42-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:31:13-37
-43        <receiver
-43-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:33:9-39:20
-44            android:name="com.allinonemanager.android.BootReceiver"
-44-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:34:13-41
-45            android:exported="true" >
-45-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:35:13-36
-46            <intent-filter>
-46-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:36:13-38:29
-47                <action android:name="android.intent.action.BOOT_COMPLETED" />
-47-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:37:17-79
-47-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:37:25-76
-48            </intent-filter>
-49        </receiver>
-50    </application>
-51
-52</manifest>
+25        android:testOnly="true"
+26        android:theme="@style/AppTheme" >
+26-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:14:9-40
+27        <activity
+27-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:15:9-17:52
+28            android:name="com.allinonemanager.android.SettingsActivity"
+28-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:16:13-45
+29            android:screenOrientation="portrait" />
+29-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:17:13-49
+30        <activity
+30-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:19:9-27:20
+31            android:name="com.allinonemanager.android.MainActivity"
+31-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:20:13-41
+32            android:exported="true"
+32-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:21:13-36
+33            android:screenOrientation="portrait" >
+33-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:22:13-49
+34            <intent-filter>
+34-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:23:13-26:29
+35                <action android:name="android.intent.action.MAIN" />
+35-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:24:17-69
+35-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:24:25-66
+36
+37                <category android:name="android.intent.category.LAUNCHER" />
+37-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:25:17-77
+37-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:25:27-74
+38            </intent-filter>
+39        </activity>
+40
+41        <receiver
+41-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:29:9-31:40
+42            android:name="com.allinonemanager.android.SessionReminderReceiver"
+42-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:30:13-52
+43            android:exported="false" />
+43-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:31:13-37
+44        <receiver
+44-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:33:9-39:20
+45            android:name="com.allinonemanager.android.BootReceiver"
+45-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:34:13-41
+46            android:exported="true" >
+46-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:35:13-36
+47            <intent-filter>
+47-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:36:13-38:29
+48                <action android:name="android.intent.action.BOOT_COMPLETED" />
+48-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:37:17-79
+48-->C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:37:25-76
+49            </intent-filter>
+50        </receiver>
+51    </application>
+52
+53</manifest>

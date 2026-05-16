@@ -108,37 +108,96 @@ final class UiKit {
     }
 
     static Button primaryButton(Context context, int textResId, int iconResId) {
-        return button(context, textResId, iconResId, COLOR_PRIMARY, Color.WHITE, Color.TRANSPARENT);
+        return iconButton(context, textResId, iconResId, COLOR_PRIMARY, Color.WHITE, Color.TRANSPARENT, 46, 20);
     }
 
     static Button neutralButton(Context context, int textResId, int iconResId) {
-        return button(context, textResId, iconResId, COLOR_SURFACE, COLOR_PRIMARY, COLOR_BORDER);
+        return iconButton(context, textResId, iconResId, COLOR_SURFACE, COLOR_PRIMARY, COLOR_BORDER, 46, 20);
     }
 
     static Button dangerButton(Context context, int textResId, int iconResId) {
-        return button(context, textResId, iconResId, COLOR_DANGER_SOFT, COLOR_DANGER, COLOR_DANGER_SOFT);
+        return iconButton(context, textResId, iconResId, COLOR_DANGER_SOFT, COLOR_DANGER, COLOR_DANGER_SOFT, 46, 20);
+    }
+
+    static Button compactPrimaryButton(Context context, int textResId, int iconResId) {
+        return iconButton(context, textResId, iconResId, COLOR_PRIMARY, Color.WHITE, Color.TRANSPARENT, 38, 18);
+    }
+
+    static Button compactNeutralButton(Context context, int textResId, int iconResId) {
+        return iconButton(context, textResId, iconResId, COLOR_SURFACE, COLOR_PRIMARY, COLOR_BORDER, 38, 18);
+    }
+
+    static Button compactDangerButton(Context context, int textResId, int iconResId) {
+        return iconButton(context, textResId, iconResId, COLOR_DANGER_SOFT, COLOR_DANGER, COLOR_DANGER_SOFT, 38, 18);
+    }
+
+    static Button primaryTextButton(Context context, int textResId, int iconResId) {
+        return textButton(context, textResId, iconResId, COLOR_PRIMARY, Color.WHITE, Color.TRANSPARENT);
+    }
+
+    static Button neutralTextButton(Context context, int textResId, int iconResId) {
+        return textButton(context, textResId, iconResId, COLOR_SURFACE, COLOR_PRIMARY, COLOR_BORDER);
     }
 
     static Button button(Context context, int textResId, int iconResId, int fillColor, int textColor, int strokeColor) {
+        return iconButton(context, textResId, iconResId, fillColor, textColor, strokeColor, 46, 20);
+    }
+
+    private static Button iconButton(
+            Context context,
+            int textResId,
+            int iconResId,
+            int fillColor,
+            int textColor,
+            int strokeColor,
+            int minHeightDp,
+            int iconSizeDp) {
         Button button = new Button(context);
         button.setText("");
         button.setContentDescription(context.getString(textResId));
+        styleButtonBase(button, fillColor, textColor, strokeColor, minHeightDp, 12, 1);
+        button.setCompoundDrawablePadding(0);
+        button.setCompoundDrawablesRelative(icon(context, iconResId, textColor, iconSizeDp), null, null, null);
+        return button;
+    }
+
+    private static Button textButton(
+            Context context,
+            int textResId,
+            int iconResId,
+            int fillColor,
+            int textColor,
+            int strokeColor) {
+        Button button = new Button(context);
+        button.setText(textResId);
+        styleButtonBase(button, fillColor, textColor, strokeColor, 46, 8, 2);
+        button.setCompoundDrawablePadding(dp(context, 6));
+        button.setCompoundDrawablesRelative(icon(context, iconResId, textColor, 16), null, null, null);
+        return button;
+    }
+
+    private static void styleButtonBase(
+            Button button,
+            int fillColor,
+            int textColor,
+            int strokeColor,
+            int minHeightDp,
+            int horizontalPaddingDp,
+            int maxLines) {
+        Context context = button.getContext();
         button.setAllCaps(false);
         button.setTextColor(textColor);
         button.setTextSize(13);
         button.setTypeface(Typeface.DEFAULT_BOLD);
         button.setGravity(Gravity.CENTER);
-        button.setMinHeight(dp(context, 46));
+        button.setMinHeight(dp(context, minHeightDp));
         button.setMinWidth(0);
         button.setMinimumWidth(0);
         button.setMinEms(0);
-        button.setMaxLines(1);
+        button.setMaxLines(maxLines);
         button.setIncludeFontPadding(false);
-        button.setPadding(dp(context, 12), 0, dp(context, 12), 0);
+        button.setPadding(dp(context, horizontalPaddingDp), 0, dp(context, horizontalPaddingDp), 0);
         button.setBackground(buttonBackground(context, fillColor, strokeColor, Color.argb(45, 0, 121, 107)));
-        button.setCompoundDrawablePadding(0);
-        button.setCompoundDrawablesRelative(icon(context, iconResId, textColor, 20), null, null, null);
-        return button;
     }
 
     static void styleHeaderTitle(TextView title) {
