@@ -1,0 +1,86 @@
+[
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_search_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_search_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_sms_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_sms_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_phone_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_phone_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_chat_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_chat_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_launcher.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_clock_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_clock_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_notes_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_notes_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_person_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_person_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_add_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_add_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_clear_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_clear_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_key_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_key_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_settings_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_settings_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_timer_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_timer_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_language_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_language_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_calendar_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_calendar_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_mail_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_mail_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_edit_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_edit_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_delete_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_delete_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/xml_locales_config.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/xml/locales_config.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_alarm_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_alarm_24.xml"
+    },
+    {
+        "merged": "com.allinonemanager.android.app-debug-4:/drawable_ic_save_24.xml.flat",
+        "source": "com.allinonemanager.android.app-main-6:/drawable/ic_save_24.xml"
+    }
+]
