@@ -77,7 +77,6 @@
     <string name="timing_before_session">Antes do início da sessão</string>
     <string name="timing_after_session">Depois do início da sessão</string>
     <string name="hint_alert_minutes">Minutos do alerta</string>
-    <string name="hint_grace_seconds">Segundos de tolerância</string>
     <string name="section_twilio_sms">SMS Twilio</string>
     <string name="setting_save_sms">Salvar configurações de SMS</string>
     <string name="hint_psychologist_sms">Telefone SMS do profissional</string>

@@ -46,7 +46,6 @@
     <string name="hint_duration_minutes">Duration minutes</string>
     <string name="hint_email">Email</string>
     <string name="hint_full_name">Full name</string>
-    <string name="hint_grace_seconds">Grace seconds</string>
     <string name="hint_notes">Notes</string>
     <string name="hint_phone">Phone</string>
     <string name="hint_psychologist_sms">Psychologist SMS phone</string>

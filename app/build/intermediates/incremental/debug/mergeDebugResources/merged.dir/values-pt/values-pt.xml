@@ -46,7 +46,6 @@
     <string name="hint_duration_minutes">Duração em minutos</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_full_name">Nome completo</string>
-    <string name="hint_grace_seconds">Segundos de tolerância</string>
     <string name="hint_notes">Observações</string>
     <string name="hint_phone">Telefone</string>
     <string name="hint_psychologist_sms">Telefone SMS do profissional</string>

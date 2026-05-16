@@ -11,6 +11,8 @@ import java.time.Instant;
 import java.util.List;
 
 public final class ReminderScheduler {
+    private static final long LATE_TRIGGER_GRACE_MILLIS = 15L * 60L * 1000L;
+
     private ReminderScheduler() {
     }
 
@@ -46,8 +48,7 @@ public final class ReminderScheduler {
         }
 
         long now = System.currentTimeMillis();
-        long graceMillis = settings.graceSeconds() * 1000L;
-        if (triggerAtMillis < now - graceMillis) {
+        if (triggerAtMillis < now - LATE_TRIGGER_GRACE_MILLIS) {
             return;
         }
 

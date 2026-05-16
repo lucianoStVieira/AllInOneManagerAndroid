@@ -57,7 +57,6 @@ string hint_default_country_prefix
 string hint_duration_minutes
 string hint_email
 string hint_full_name
-string hint_grace_seconds
 string hint_notes
 string hint_phone
 string hint_psychologist_sms

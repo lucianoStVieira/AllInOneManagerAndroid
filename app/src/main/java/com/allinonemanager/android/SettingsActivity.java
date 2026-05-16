@@ -34,7 +34,6 @@ public final class SettingsActivity extends Activity {
     private EditText txtClientPrefix;
     private Spinner spinnerTiming;
     private EditText txtAlertMinutes;
-    private EditText txtGraceSeconds;
     private Switch swSendSms;
     private EditText txtPsychologistSms;
     private Switch swSendClientSms;
@@ -131,6 +130,9 @@ public final class SettingsActivity extends Activity {
         txtClientPrefix.setText(settings.clientPhoneInternationalPrefixDigits());
         root.addView(txtClientPrefix);
 
+        swSendWhatsApp.setOnCheckedChangeListener((buttonView, isChecked) -> updateWhatsAppFieldsEnabled());
+        swSendClientWhatsApp.setOnCheckedChangeListener((buttonView, isChecked) -> updateWhatsAppFieldsEnabled());
+
         addSectionTitle(root, R.string.section_timing, R.drawable.ic_alarm_24);
         spinnerTiming = new Spinner(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -148,9 +150,7 @@ public final class SettingsActivity extends Activity {
 
         txtAlertMinutes = input(R.string.hint_alert_minutes, InputType.TYPE_CLASS_NUMBER, R.drawable.ic_timer_24);
         txtAlertMinutes.setText(String.valueOf(settings.alertMinutes()));
-        txtGraceSeconds = input(R.string.hint_grace_seconds, InputType.TYPE_CLASS_NUMBER, R.drawable.ic_clock_24);
-        txtGraceSeconds.setText(String.valueOf(settings.graceSeconds()));
-        root.addView(twoColumn(txtAlertMinutes, txtGraceSeconds));
+        root.addView(txtAlertMinutes);
 
         addSectionTitle(root, R.string.section_twilio_sms, R.drawable.ic_sms_24);
         swSendSms = new Switch(this);
@@ -188,6 +188,10 @@ public final class SettingsActivity extends Activity {
         root.addView(txtTwilioFromPhone);
         root.addView(txtTwilioMessagingService);
 
+        swSendSms.setOnCheckedChangeListener((buttonView, isChecked) -> updateSmsFieldsEnabled());
+        updateWhatsAppFieldsEnabled();
+        updateSmsFieldsEnabled();
+
         LinearLayout buttons = horizontal();
         buttons.setGravity(Gravity.CENTER);
         Button save = UiKit.compactPrimaryButton(this, R.string.action_save, R.drawable.ic_save_24);
@@ -201,7 +205,6 @@ public final class SettingsActivity extends Activity {
 
     private void saveSettings() {
         int minutes = parseInt(txtAlertMinutes, 60);
-        int grace = parseInt(txtGraceSeconds, 900);
         AppLanguage.saveSelectedLanguageTag(this, selectedLanguageTag());
         settings.save(
                 txtPsychologistWhatsApp.getText().toString(),
@@ -210,7 +213,6 @@ public final class SettingsActivity extends Activity {
                 txtClientPrefix.getText().toString(),
                 spinnerTiming.getSelectedItemPosition() == 0,
                 minutes,
-                grace,
                 swSendSms.isChecked(),
                 txtPsychologistSms.getText().toString(),
                 swSendClientSms.isChecked(),
@@ -225,6 +227,28 @@ public final class SettingsActivity extends Activity {
                 toastContext.getString(R.string.toast_settings_saved),
                 Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    private void updateWhatsAppFieldsEnabled() {
+        boolean sendWhatsApp = swSendWhatsApp.isChecked();
+        setConfigurationEnabled(txtPsychologistWhatsApp, sendWhatsApp);
+        setConfigurationEnabled(swSendClientWhatsApp, sendWhatsApp);
+        setConfigurationEnabled(txtClientPrefix, sendWhatsApp && swSendClientWhatsApp.isChecked());
+    }
+
+    private void updateSmsFieldsEnabled() {
+        boolean sendSms = swSendSms.isChecked();
+        setConfigurationEnabled(txtPsychologistSms, sendSms);
+        setConfigurationEnabled(swSendClientSms, sendSms);
+        setConfigurationEnabled(txtTwilioAccountSid, sendSms);
+        setConfigurationEnabled(txtTwilioAuthToken, sendSms);
+        setConfigurationEnabled(txtTwilioFromPhone, sendSms);
+        setConfigurationEnabled(txtTwilioMessagingService, sendSms);
+    }
+
+    private void setConfigurationEnabled(View view, boolean enabled) {
+        view.setEnabled(enabled);
+        view.setAlpha(enabled ? 1f : 0.45f);
     }
 
     private String selectedLanguageTag() {
@@ -256,22 +280,6 @@ public final class SettingsActivity extends Activity {
         params.setMargins(0, dp(6), 0, dp(6));
         editText.setLayoutParams(params);
         return editText;
-    }
-
-    private LinearLayout twoColumn(View left, View right) {
-        LinearLayout row = horizontal();
-        addWeighted(row, left);
-        addWeighted(row, right);
-        return row;
-    }
-
-    private void addWeighted(LinearLayout row, View view) {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                0,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                1f);
-        params.setMargins(dp(3), dp(6), dp(3), dp(6));
-        row.addView(view, params);
     }
 
     private void addCompact(LinearLayout row, View view) {
