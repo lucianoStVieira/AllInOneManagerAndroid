@@ -37,11 +37,14 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.List;
 
 public final class MainActivity extends Activity {
     private static final int REQUEST_POST_NOTIFICATIONS = 2001;
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE;
+    private static final DateTimeFormatter STORAGE_DATE_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE;
+    private static final DateTimeFormatter DATE_FORMAT =
+            DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT);
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     private static final DateTimeFormatter DISPLAY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
@@ -230,7 +233,7 @@ public final class MainActivity extends Activity {
 
         String dob;
         try {
-            dob = parseDate(txtDateOfBirth).format(DATE_FORMAT);
+            dob = parseDate(txtDateOfBirth).format(STORAGE_DATE_FORMAT);
         } catch (IllegalArgumentException ex) {
             toast(ex.getMessage());
             return;
@@ -275,7 +278,7 @@ public final class MainActivity extends Activity {
 
         String dob;
         try {
-            dob = parseDate(txtDateOfBirth).format(DATE_FORMAT);
+            dob = parseDate(txtDateOfBirth).format(STORAGE_DATE_FORMAT);
         } catch (IllegalArgumentException ex) {
             toast(ex.getMessage());
             return;
@@ -341,7 +344,7 @@ public final class MainActivity extends Activity {
         txtEmail.setText(client.email);
         txtDateOfBirth.setText(client.dateOfBirth == null || client.dateOfBirth.isEmpty()
                 ? LocalDate.now().format(DATE_FORMAT)
-                : client.dateOfBirth);
+                : formatDateOnly(client.dateOfBirth));
         setClientTimeZoneSelection(client.timeZoneId);
         txtNotes.setText(client.notes);
         selectedClientLabel.setText(getString(R.string.selected_client_format, client.fullName));
@@ -531,20 +534,28 @@ public final class MainActivity extends Activity {
         return spinner;
     }
 
-    private static String formatDateOnly(String isoDate) {
+    private static String formatDateOnly(String dateText) {
         try {
-            return DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.parse(isoDate));
+            return DATE_FORMAT.format(parseDateText(dateText));
         } catch (RuntimeException ignored) {
-            return isoDate;
+            return dateText;
         }
     }
 
     private LocalDate parseDate(EditText editText) {
         String text = editText.getText().toString().trim();
         try {
-            return LocalDate.parse(text, DATE_FORMAT);
+            return parseDateText(text);
         } catch (DateTimeParseException ex) {
             throw new IllegalArgumentException(getString(R.string.error_date_format));
+        }
+    }
+
+    private static LocalDate parseDateText(String text) {
+        try {
+            return LocalDate.parse(text, DATE_FORMAT);
+        } catch (DateTimeParseException ex) {
+            return LocalDate.parse(text, STORAGE_DATE_FORMAT);
         }
     }
 
@@ -572,7 +583,7 @@ public final class MainActivity extends Activity {
     private void showDatePicker(EditText target) {
         LocalDate initial;
         try {
-            initial = LocalDate.parse(target.getText().toString().trim(), DATE_FORMAT);
+            initial = parseDateText(target.getText().toString().trim());
         } catch (RuntimeException ignored) {
             initial = LocalDate.now();
         }

@@ -7,7 +7,7 @@
     <string name="hint_full_name">Full name</string>
     <string name="hint_phone">Phone</string>
     <string name="hint_email">Email</string>
-    <string name="hint_date_of_birth">Date of birth (yyyy-MM-dd)</string>
+    <string name="hint_date_of_birth">Date of birth (dd/MM/yyyy)</string>
     <string name="hint_client_time_zone">Client time zone</string>
     <string name="hint_notes">Notes</string>
     <string name="action_add">Add</string>
@@ -18,7 +18,7 @@
     <string name="hint_search_clients">Search by name, phone, or email</string>
     <string name="section_client_sessions">Client Sessions</string>
     <string name="text_select_client_schedule">Select a client to schedule sessions.</string>
-    <string name="hint_session_date">Session date (yyyy-MM-dd)</string>
+    <string name="hint_session_date">Session date (dd/MM/yyyy)</string>
     <string name="hint_session_time">Session time (HH:mm)</string>
     <string name="hint_duration_minutes">Duration minutes</string>
     <string name="hint_session_notes">Session notes</string>
@@ -43,7 +43,7 @@
     <string name="dialog_delete_session_message">Delete this session?</string>
     <string name="session_title_format">%1$s  (%2$d min)</string>
     <string name="session_time_zone_format">Time zone: %1$s</string>
-    <string name="error_date_format">Use date format yyyy-MM-dd.</string>
+    <string name="error_date_format">Use date format dd/MM/yyyy.</string>
     <string name="error_time_format">Use time format HH:mm.</string>
     <string name="error_duration_range">Duration must be between 15 and 240 minutes.</string>
     <string name="error_duration_number">Duration must be a number.</string>

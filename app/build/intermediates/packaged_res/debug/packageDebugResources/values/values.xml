@@ -33,7 +33,7 @@
     <string name="empty_no_client_selected">No client selected.</string>
     <string name="empty_no_clients">No clients found.</string>
     <string name="empty_no_sessions">No sessions scheduled.</string>
-    <string name="error_date_format">Use date format yyyy-MM-dd.</string>
+    <string name="error_date_format">Use date format dd/MM/yyyy.</string>
     <string name="error_duration_number">Duration must be a number.</string>
     <string name="error_duration_range">Duration must be between 15 and 240 minutes.</string>
     <string name="error_time_format">Use time format HH:mm.</string>
@@ -41,7 +41,7 @@
     <string name="hint_alert_minutes">Alert minutes</string>
     <string name="hint_client_time_zone">Client time zone</string>
     <string name="hint_confirm_password">Confirm password</string>
-    <string name="hint_date_of_birth">Date of birth (yyyy-MM-dd)</string>
+    <string name="hint_date_of_birth">Date of birth (dd/MM/yyyy)</string>
     <string name="hint_default_country_prefix">Default country prefix</string>
     <string name="hint_duration_minutes">Duration minutes</string>
     <string name="hint_email">Email</string>
@@ -52,7 +52,7 @@
     <string name="hint_psychologist_sms">Psychologist SMS phone</string>
     <string name="hint_psychologist_whatsapp">Psychologist WhatsApp digits</string>
     <string name="hint_search_clients">Search by name, phone, or email</string>
-    <string name="hint_session_date">Session date (yyyy-MM-dd)</string>
+    <string name="hint_session_date">Session date (dd/MM/yyyy)</string>
     <string name="hint_session_notes">Session notes</string>
     <string name="hint_session_time">Session time (HH:mm)</string>
     <string name="hint_twilio_account_sid">Twilio Account SID</string>

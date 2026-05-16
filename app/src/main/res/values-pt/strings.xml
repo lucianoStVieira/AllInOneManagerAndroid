@@ -7,7 +7,7 @@
     <string name="hint_full_name">Nome completo</string>
     <string name="hint_phone">Telefone</string>
     <string name="hint_email">E-mail</string>
-    <string name="hint_date_of_birth">Data de nascimento (aaaa-MM-dd)</string>
+    <string name="hint_date_of_birth">Data de nascimento (dd/MM/yyyy)</string>
     <string name="hint_client_time_zone">Fuso hor&#225;rio do cliente</string>
     <string name="hint_notes">Observações</string>
     <string name="action_add">Adicionar</string>
@@ -18,7 +18,7 @@
     <string name="hint_search_clients">Buscar por nome, telefone ou e-mail</string>
     <string name="section_client_sessions">Sessões do cliente</string>
     <string name="text_select_client_schedule">Selecione um cliente para agendar sessões.</string>
-    <string name="hint_session_date">Data da sessão (aaaa-MM-dd)</string>
+    <string name="hint_session_date">Data da sessão (dd/MM/yyyy)</string>
     <string name="hint_session_time">Horário da sessão (HH:mm)</string>
     <string name="hint_duration_minutes">Duração em minutos</string>
     <string name="hint_session_notes">Observações da sessão</string>
@@ -43,7 +43,7 @@
     <string name="dialog_delete_session_message">Excluir esta sessão?</string>
     <string name="session_title_format">%1$s  (%2$d min)</string>
     <string name="session_time_zone_format">Fuso hor&#225;rio: %1$s</string>
-    <string name="error_date_format">Use o formato de data aaaa-MM-dd.</string>
+    <string name="error_date_format">Use o formato de data dd/MM/yyyy.</string>
     <string name="error_time_format">Use o formato de horário HH:mm.</string>
     <string name="error_duration_range">A duração deve ficar entre 15 e 240 minutos.</string>
     <string name="error_duration_number">A duração deve ser um número.</string>
