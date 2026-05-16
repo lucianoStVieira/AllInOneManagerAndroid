@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AllInOneManager</string>
+    <string name="app_name">All In One Manager</string>
 
     <string name="main_title">Cadastro de clientes</string>
     <string name="action_settings">Configurações</string>
@@ -56,7 +56,7 @@
     <string name="hint_confirm_password">Confirmar senha</string>
     <string name="action_unlock">Desbloquear</string>
     <string name="action_android_auth">Usar autentica&#231;&#227;o do Android</string>
-    <string name="android_auth_title">Desbloquear AllInOneManager</string>
+    <string name="android_auth_title">Desbloquear All In One Manager</string>
     <string name="android_auth_subtitle">Use o m&#233;todo de autentica&#231;&#227;o do dispositivo.</string>
     <string name="toast_password_required">A senha é obrigatória.</string>
     <string name="toast_password_short">Use pelo menos 4 caracteres.</string>

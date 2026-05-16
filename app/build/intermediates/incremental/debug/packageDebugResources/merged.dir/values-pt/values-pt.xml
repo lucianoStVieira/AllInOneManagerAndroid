@@ -24,8 +24,8 @@
     <string name="action_unlock">Desbloquear</string>
     <string name="action_update">Atualizar</string>
     <string name="android_auth_subtitle">Use o método de autenticação do dispositivo.</string>
-    <string name="android_auth_title">Desbloquear AllInOneManager</string>
-    <string name="app_name">AllInOneManager</string>
+    <string name="android_auth_title">Desbloquear All In One Manager</string>
+    <string name="app_name">All In One Manager</string>
     <string name="dialog_delete_client_message">Excluir o cliente selecionado?</string>
     <string name="dialog_delete_client_title">Excluir cliente</string>
     <string name="dialog_delete_session_message">Excluir esta sessão?</string>
