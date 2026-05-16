@@ -70,7 +70,7 @@
     <string name="language_portuguese">Portuguese</string>
     <string name="section_whatsapp">WhatsApp</string>
     <string name="setting_send_whatsapp">Send schedule alerts by WhatsApp</string>
-    <string name="hint_psychologist_whatsapp">Psychologist WhatsApp digits</string>
+    <string name="hint_psychologist_whatsapp">Psychologist WhatsApp number</string>
     <string name="setting_send_client_whatsapp">Also send alerts to client WhatsApp</string>
     <string name="hint_default_country_prefix">Default country prefix</string>
     <string name="section_timing">Timing</string>

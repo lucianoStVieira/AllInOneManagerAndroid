@@ -49,7 +49,7 @@
     <string name="hint_notes">Notes</string>
     <string name="hint_phone">Phone</string>
     <string name="hint_psychologist_sms">Psychologist SMS phone</string>
-    <string name="hint_psychologist_whatsapp">Psychologist WhatsApp digits</string>
+    <string name="hint_psychologist_whatsapp">Psychologist WhatsApp number</string>
     <string name="hint_search_clients">Search by name, phone, or email</string>
     <string name="hint_session_date">Session date (dd/MM/yyyy)</string>
     <string name="hint_session_notes">Session notes</string>

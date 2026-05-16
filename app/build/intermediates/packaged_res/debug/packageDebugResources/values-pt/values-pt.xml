@@ -49,7 +49,7 @@
     <string name="hint_notes">Observações</string>
     <string name="hint_phone">Telefone</string>
     <string name="hint_psychologist_sms">Telefone SMS do profissional</string>
-    <string name="hint_psychologist_whatsapp">Dígitos do WhatsApp do profissional</string>
+    <string name="hint_psychologist_whatsapp">Número do WhatsApp do psicólogo(a)</string>
     <string name="hint_search_clients">Buscar por nome, telefone ou e-mail</string>
     <string name="hint_session_date">Data da sessão (dd/MM/yyyy)</string>
     <string name="hint_session_notes">Observações da sessão</string>

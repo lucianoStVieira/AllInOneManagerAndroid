@@ -70,7 +70,7 @@
     <string name="language_portuguese">Português</string>
     <string name="section_whatsapp">WhatsApp</string>
     <string name="setting_send_whatsapp">Enviar alertas de agenda pelo WhatsApp</string>
-    <string name="hint_psychologist_whatsapp">Dígitos do WhatsApp do profissional</string>
+    <string name="hint_psychologist_whatsapp">Número do WhatsApp do psicólogo(a)</string>
     <string name="setting_send_client_whatsapp">Enviar alertas também para o WhatsApp do cliente</string>
     <string name="hint_default_country_prefix">Prefixo internacional padrão</string>
     <string name="section_timing">Horário</string>
