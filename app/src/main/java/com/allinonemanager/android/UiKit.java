@@ -121,7 +121,8 @@ final class UiKit {
 
     static Button button(Context context, int textResId, int iconResId, int fillColor, int textColor, int strokeColor) {
         Button button = new Button(context);
-        button.setText(textResId);
+        button.setText("");
+        button.setContentDescription(context.getString(textResId));
         button.setAllCaps(false);
         button.setTextColor(textColor);
         button.setTextSize(13);
@@ -131,12 +132,12 @@ final class UiKit {
         button.setMinWidth(0);
         button.setMinimumWidth(0);
         button.setMinEms(0);
-        button.setMaxLines(2);
+        button.setMaxLines(1);
         button.setIncludeFontPadding(false);
-        button.setPadding(dp(context, 8), 0, dp(context, 8), 0);
+        button.setPadding(dp(context, 12), 0, dp(context, 12), 0);
         button.setBackground(buttonBackground(context, fillColor, strokeColor, Color.argb(45, 0, 121, 107)));
-        button.setCompoundDrawablePadding(dp(context, 6));
-        button.setCompoundDrawablesRelative(icon(context, iconResId, textColor, 16), null, null, null);
+        button.setCompoundDrawablePadding(0);
+        button.setCompoundDrawablesRelative(icon(context, iconResId, textColor, 20), null, null, null);
         return button;
     }
 
