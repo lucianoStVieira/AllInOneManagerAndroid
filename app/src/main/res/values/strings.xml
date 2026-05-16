@@ -8,6 +8,7 @@
     <string name="hint_phone">Phone</string>
     <string name="hint_email">Email</string>
     <string name="hint_date_of_birth">Date of birth (yyyy-MM-dd)</string>
+    <string name="hint_client_time_zone">Client time zone</string>
     <string name="hint_notes">Notes</string>
     <string name="action_add">Add</string>
     <string name="action_update">Update</string>
@@ -33,6 +34,7 @@
     <string name="selected_client_format">Selected: %1$s</string>
     <string name="empty_no_clients">No clients found.</string>
     <string name="summary_born_format">Born: %1$s</string>
+    <string name="summary_time_zone_format">Time zone: %1$s</string>
     <string name="summary_no_phone_email">No phone or email</string>
     <string name="toast_select_client_schedule">Select a client before scheduling a session.</string>
     <string name="empty_no_client_selected">No client selected.</string>
@@ -40,7 +42,7 @@
     <string name="dialog_delete_session_title">Delete Session</string>
     <string name="dialog_delete_session_message">Delete this session?</string>
     <string name="session_title_format">%1$s  (%2$d min)</string>
-    <string name="session_display_zone_format">Display zone: %1$s</string>
+    <string name="session_time_zone_format">Time zone: %1$s</string>
     <string name="error_date_format">Use date format yyyy-MM-dd.</string>
     <string name="error_time_format">Use time format HH:mm.</string>
     <string name="error_duration_range">Duration must be between 15 and 240 minutes.</string>
@@ -62,7 +64,6 @@
     <string name="timing_after_session">After session starts</string>
     <string name="hint_alert_minutes">Alert minutes</string>
     <string name="hint_grace_seconds">Grace seconds</string>
-    <string name="hint_display_time_zone">Display time zone</string>
     <string name="section_twilio_sms">Twilio SMS</string>
     <string name="setting_save_sms">Save SMS settings</string>
     <string name="hint_psychologist_sms">Psychologist SMS phone</string>

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.time.Duration;
-import java.time.ZoneId;
 import java.util.regex.Pattern;
 
 public final class NotificationSettings {
@@ -18,7 +17,6 @@ public final class NotificationSettings {
     private static final String KEY_ALERT_BEFORE = "alert_before_session";
     private static final String KEY_ALERT_MINUTES = "alert_minutes";
     private static final String KEY_GRACE_SECONDS = "notify_grace_seconds";
-    private static final String KEY_DISPLAY_ZONE = "display_time_zone_id";
     private static final String KEY_SEND_SMS = "send_sms_alerts";
     private static final String KEY_PSYCHOLOGIST_SMS = "psychologist_sms_phone";
     private static final String KEY_SEND_CLIENT_SMS = "send_client_sms";
@@ -68,23 +66,6 @@ public final class NotificationSettings {
 
     public int graceSeconds() {
         return clamp(prefs.getInt(KEY_GRACE_SECONDS, 900), 60, 86400);
-    }
-
-    public String displayTimeZoneId() {
-        return prefs.getString(KEY_DISPLAY_ZONE, "America/Sao_Paulo");
-    }
-
-    public ZoneId displayZone() {
-        String id = mapWindowsTimeZone(displayTimeZoneId());
-        if (id == null || id.trim().isEmpty()) {
-            return ZoneId.systemDefault();
-        }
-
-        try {
-            return ZoneId.of(id.trim());
-        } catch (RuntimeException ignored) {
-            return ZoneId.systemDefault();
-        }
     }
 
     public boolean sendSmsAlerts() {
@@ -140,7 +121,6 @@ public final class NotificationSettings {
             boolean alertBeforeSession,
             int alertMinutes,
             int graceSeconds,
-            String displayTimeZoneId,
             boolean sendSmsAlerts,
             String psychologistSmsPhone,
             boolean sendClientSms,
@@ -156,7 +136,6 @@ public final class NotificationSettings {
                 .putBoolean(KEY_ALERT_BEFORE, alertBeforeSession)
                 .putInt(KEY_ALERT_MINUTES, clamp(alertMinutes, 1, 10080))
                 .putInt(KEY_GRACE_SECONDS, clamp(graceSeconds, 60, 86400))
-                .putString(KEY_DISPLAY_ZONE, displayTimeZoneId == null ? "" : displayTimeZoneId.trim())
                 .putBoolean(KEY_SEND_SMS, sendSmsAlerts)
                 .putString(KEY_PSYCHOLOGIST_SMS, psychologistSmsPhone == null ? "" : psychologistSmsPhone.trim())
                 .putBoolean(KEY_SEND_CLIENT_SMS, sendClientSms)
@@ -179,15 +158,4 @@ public final class NotificationSettings {
         return Math.max(min, Math.min(max, value));
     }
 
-    private static String mapWindowsTimeZone(String id) {
-        if (id == null) {
-            return "";
-        }
-
-        if ("E. South America Standard Time".equalsIgnoreCase(id.trim())) {
-            return "America/Sao_Paulo";
-        }
-
-        return id;
-    }
 }

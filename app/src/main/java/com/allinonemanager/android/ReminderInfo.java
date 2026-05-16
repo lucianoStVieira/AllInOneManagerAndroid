@@ -1,6 +1,7 @@
 package com.allinonemanager.android;
 
 import java.time.Instant;
+import java.time.ZoneId;
 
 public final class ReminderInfo {
     public final long sessionId;
@@ -10,6 +11,7 @@ public final class ReminderInfo {
     public final String sessionNotes;
     public final String clientName;
     public final String clientPhone;
+    public final String clientTimeZoneId;
 
     public ReminderInfo(
             long sessionId,
@@ -18,7 +20,8 @@ public final class ReminderInfo {
             int durationMinutes,
             String sessionNotes,
             String clientName,
-            String clientPhone) {
+            String clientPhone,
+            String clientTimeZoneId) {
         this.sessionId = sessionId;
         this.clientId = clientId;
         this.sessionAt = sessionAt;
@@ -26,9 +29,14 @@ public final class ReminderInfo {
         this.sessionNotes = sessionNotes;
         this.clientName = clientName;
         this.clientPhone = clientPhone;
+        this.clientTimeZoneId = TimeZoneSupport.normalizeZoneId(clientTimeZoneId);
     }
 
     public Instant sessionInstant() {
         return Instant.parse(sessionAt);
+    }
+
+    public ZoneId clientZone() {
+        return TimeZoneSupport.zoneId(clientTimeZoneId);
     }
 }

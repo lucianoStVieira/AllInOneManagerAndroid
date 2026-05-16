@@ -6,4 +6,4 @@ com.allinonemanager.android.app-packageDebugResources-4 C:\Dev\AllInOneManagerAn
 com.allinonemanager.android.app-debug-5 C:\Dev\AllInOneManagerAndroid\app\build\intermediates\merged_res\debug\mergeDebugResources
 com.allinonemanager.android.app-debug-6 C:\Dev\AllInOneManagerAndroid\app\src\debug\res
 com.allinonemanager.android.app-main-7 C:\Dev\AllInOneManagerAndroid\app\src\main\res
-gradleHome-0 C:\Dev\AllInOneManagerAndroid\.gradle
+gradleHome-0 C:\Users\lucia\.gradle

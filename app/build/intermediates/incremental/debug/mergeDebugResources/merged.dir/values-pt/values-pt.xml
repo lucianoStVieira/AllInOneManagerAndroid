@@ -34,9 +34,9 @@
     <string name="error_duration_range">A duração deve ficar entre 15 e 240 minutos.</string>
     <string name="error_time_format">Use o formato de horário HH:mm.</string>
     <string name="hint_alert_minutes">Minutos do alerta</string>
+    <string name="hint_client_time_zone">Fuso horário do cliente</string>
     <string name="hint_date_of_birth">Data de nascimento (aaaa-MM-dd)</string>
     <string name="hint_default_country_prefix">Prefixo internacional padrão</string>
-    <string name="hint_display_time_zone">Fuso horário exibido</string>
     <string name="hint_duration_minutes">Duração em minutos</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_full_name">Nome completo</string>
@@ -87,7 +87,7 @@
     <string name="section_twilio_sms">SMS Twilio</string>
     <string name="section_whatsapp">WhatsApp</string>
     <string name="selected_client_format">Selecionado: %1$s</string>
-    <string name="session_display_zone_format">Fuso exibido: %1$s</string>
+    <string name="session_time_zone_format">Fuso horário: %1$s</string>
     <string name="session_title_format">%1$s  (%2$d min)</string>
     <string name="setting_save_sms">Salvar configurações de SMS</string>
     <string name="setting_send_client_sms">Enviar alertas também para o SMS do cliente</string>
@@ -96,6 +96,7 @@
     <string name="settings_title">Configurações de notificação</string>
     <string name="summary_born_format">Nascimento: %1$s</string>
     <string name="summary_no_phone_email">Sem telefone ou e-mail</string>
+    <string name="summary_time_zone_format">Fuso horário: %1$s</string>
     <string name="text_select_client_schedule">Selecione um cliente para agendar sessões.</string>
     <string name="timing_after_session">Depois do início da sessão</string>
     <string name="timing_before_session">Antes do início da sessão</string>

@@ -8,6 +8,7 @@
     <string name="hint_phone">Telefone</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_date_of_birth">Data de nascimento (aaaa-MM-dd)</string>
+    <string name="hint_client_time_zone">Fuso hor&#225;rio do cliente</string>
     <string name="hint_notes">Observações</string>
     <string name="action_add">Adicionar</string>
     <string name="action_update">Atualizar</string>
@@ -33,6 +34,7 @@
     <string name="selected_client_format">Selecionado: %1$s</string>
     <string name="empty_no_clients">Nenhum cliente encontrado.</string>
     <string name="summary_born_format">Nascimento: %1$s</string>
+    <string name="summary_time_zone_format">Fuso hor&#225;rio: %1$s</string>
     <string name="summary_no_phone_email">Sem telefone ou e-mail</string>
     <string name="toast_select_client_schedule">Selecione um cliente antes de agendar uma sessão.</string>
     <string name="empty_no_client_selected">Nenhum cliente selecionado.</string>
@@ -40,7 +42,7 @@
     <string name="dialog_delete_session_title">Excluir sessão</string>
     <string name="dialog_delete_session_message">Excluir esta sessão?</string>
     <string name="session_title_format">%1$s  (%2$d min)</string>
-    <string name="session_display_zone_format">Fuso exibido: %1$s</string>
+    <string name="session_time_zone_format">Fuso hor&#225;rio: %1$s</string>
     <string name="error_date_format">Use o formato de data aaaa-MM-dd.</string>
     <string name="error_time_format">Use o formato de horário HH:mm.</string>
     <string name="error_duration_range">A duração deve ficar entre 15 e 240 minutos.</string>
@@ -62,7 +64,6 @@
     <string name="timing_after_session">Depois do início da sessão</string>
     <string name="hint_alert_minutes">Minutos do alerta</string>
     <string name="hint_grace_seconds">Segundos de tolerância</string>
-    <string name="hint_display_time_zone">Fuso horário exibido</string>
     <string name="section_twilio_sms">SMS Twilio</string>
     <string name="setting_save_sms">Salvar configurações de SMS</string>
     <string name="hint_psychologist_sms">Telefone SMS do profissional</string>

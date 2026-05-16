@@ -34,7 +34,6 @@ public final class SettingsActivity extends Activity {
     private Spinner spinnerTiming;
     private EditText txtAlertMinutes;
     private EditText txtGraceSeconds;
-    private EditText txtDisplayTimeZone;
     private Switch swSendSms;
     private EditText txtPsychologistSms;
     private Switch swSendClientSms;
@@ -146,10 +145,6 @@ public final class SettingsActivity extends Activity {
         txtGraceSeconds.setText(String.valueOf(settings.graceSeconds()));
         root.addView(twoColumn(txtAlertMinutes, txtGraceSeconds));
 
-        txtDisplayTimeZone = input(R.string.hint_display_time_zone, InputType.TYPE_CLASS_TEXT, R.drawable.ic_clock_24);
-        txtDisplayTimeZone.setText(settings.displayTimeZoneId());
-        root.addView(txtDisplayTimeZone);
-
         addSectionTitle(root, R.string.section_twilio_sms, R.drawable.ic_sms_24);
         swSendSms = new Switch(this);
         swSendSms.setText(R.string.setting_save_sms);
@@ -208,7 +203,6 @@ public final class SettingsActivity extends Activity {
                 spinnerTiming.getSelectedItemPosition() == 0,
                 minutes,
                 grace,
-                txtDisplayTimeZone.getText().toString(),
                 swSendSms.isChecked(),
                 txtPsychologistSms.getText().toString(),
                 swSendClientSms.isChecked(),

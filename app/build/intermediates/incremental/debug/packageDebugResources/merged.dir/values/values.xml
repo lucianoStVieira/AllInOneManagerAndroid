@@ -34,9 +34,9 @@
     <string name="error_duration_range">Duration must be between 15 and 240 minutes.</string>
     <string name="error_time_format">Use time format HH:mm.</string>
     <string name="hint_alert_minutes">Alert minutes</string>
+    <string name="hint_client_time_zone">Client time zone</string>
     <string name="hint_date_of_birth">Date of birth (yyyy-MM-dd)</string>
     <string name="hint_default_country_prefix">Default country prefix</string>
-    <string name="hint_display_time_zone">Display time zone</string>
     <string name="hint_duration_minutes">Duration minutes</string>
     <string name="hint_email">Email</string>
     <string name="hint_full_name">Full name</string>
@@ -87,7 +87,7 @@
     <string name="section_twilio_sms">Twilio SMS</string>
     <string name="section_whatsapp">WhatsApp</string>
     <string name="selected_client_format">Selected: %1$s</string>
-    <string name="session_display_zone_format">Display zone: %1$s</string>
+    <string name="session_time_zone_format">Time zone: %1$s</string>
     <string name="session_title_format">%1$s  (%2$d min)</string>
     <string name="setting_save_sms">Save SMS settings</string>
     <string name="setting_send_client_sms">Also send alerts to client SMS</string>
@@ -96,6 +96,7 @@
     <string name="settings_title">Notification Settings</string>
     <string name="summary_born_format">Born: %1$s</string>
     <string name="summary_no_phone_email">No phone or email</string>
+    <string name="summary_time_zone_format">Time zone: %1$s</string>
     <string name="text_select_client_schedule">Select a client to schedule sessions.</string>
     <string name="timing_after_session">After session starts</string>
     <string name="timing_before_session">Before session starts</string>

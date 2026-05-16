@@ -21,10 +21,12 @@ import android.text.style.StyleSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +52,7 @@ public final class MainActivity extends Activity {
     private EditText txtPhone;
     private EditText txtEmail;
     private EditText txtDateOfBirth;
+    private Spinner spinnerClientTimeZone;
     private EditText txtNotes;
     private EditText txtSearch;
     private EditText txtSessionDate;
@@ -138,6 +141,11 @@ public final class MainActivity extends Activity {
         txtDateOfBirth.setText(LocalDate.now().format(DATE_FORMAT));
         txtDateOfBirth.setOnClickListener(v -> showDatePicker(txtDateOfBirth));
         root.addView(txtDateOfBirth);
+
+        addFieldLabel(root, R.string.hint_client_time_zone, R.drawable.ic_clock_24);
+        spinnerClientTimeZone = timeZoneSpinner(TimeZoneSupport.DEFAULT_ZONE_ID);
+        root.addView(spinnerClientTimeZone);
+
         txtNotes = input(
                 R.string.hint_notes,
                 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE,
@@ -235,6 +243,7 @@ public final class MainActivity extends Activity {
                 txtPhone.getText().toString(),
                 txtEmail.getText().toString(),
                 dob,
+                selectedTimeZoneId(),
                 txtNotes.getText().toString());
         clearClientForm();
         selectedClientId = id;
@@ -272,8 +281,10 @@ public final class MainActivity extends Activity {
                 txtPhone.getText().toString(),
                 txtEmail.getText().toString(),
                 dob,
+                selectedTimeZoneId(),
                 txtNotes.getText().toString());
         loadClients();
+        loadSessionsForSelectedClient();
         toast(R.string.toast_client_updated);
     }
 
@@ -302,6 +313,7 @@ public final class MainActivity extends Activity {
         txtPhone.setText("");
         txtEmail.setText("");
         txtDateOfBirth.setText(LocalDate.now().format(DATE_FORMAT));
+        setClientTimeZoneSelection(TimeZoneSupport.DEFAULT_ZONE_ID);
         txtNotes.setText("");
         txtSessionNotes.setText("");
         selectedClientLabel.setText(R.string.text_select_client_schedule);
@@ -317,6 +329,7 @@ public final class MainActivity extends Activity {
         txtDateOfBirth.setText(client.dateOfBirth == null || client.dateOfBirth.isEmpty()
                 ? LocalDate.now().format(DATE_FORMAT)
                 : client.dateOfBirth);
+        setClientTimeZoneSelection(client.timeZoneId);
         txtNotes.setText(client.notes);
         selectedClientLabel.setText(getString(R.string.selected_client_format, client.fullName));
         loadClients();
@@ -355,7 +368,7 @@ public final class MainActivity extends Activity {
         try {
             LocalDate date = parseDate(txtSessionDate);
             LocalTime time = parseTime(txtSessionTime);
-            sessionAt = ZonedDateTime.of(date, time, ZoneId.systemDefault()).toInstant();
+            sessionAt = ZonedDateTime.of(date, time, selectedClientZone()).toInstant();
             duration = parseDuration();
         } catch (IllegalArgumentException ex) {
             toast(ex.getMessage());
@@ -390,12 +403,13 @@ public final class MainActivity extends Activity {
             return;
         }
 
+        ZoneId clientZone = selectedClientZone();
         for (ClientSession session : sessions) {
             LinearLayout row = horizontal();
             row.setGravity(Gravity.CENTER_VERTICAL);
             TextView sessionText = rowText(
-                    formatSessionTitle(session),
-                    formatSessionDetails(session),
+                    formatSessionTitle(session, clientZone),
+                    formatSessionDetails(session, clientZone),
                     R.drawable.ic_calendar_24,
                     false);
             addWeighted(row, sessionText);
@@ -438,24 +452,65 @@ public final class MainActivity extends Activity {
             }
             builder.append(getString(R.string.summary_born_format, formatDateOnly(client.dateOfBirth)));
         }
+        if (client.timeZoneId != null && !client.timeZoneId.isEmpty()) {
+            if (builder.length() > 0) {
+                builder.append('\n');
+            }
+            builder.append(getString(R.string.summary_time_zone_format, client.timeZoneId));
+        }
         return builder.length() == 0 ? getString(R.string.summary_no_phone_email) : builder.toString();
     }
 
-    private String formatSessionTitle(ClientSession session) {
+    private String formatSessionTitle(ClientSession session, ZoneId clientZone) {
         return getString(
                 R.string.session_title_format,
-                DISPLAY_FORMAT.format(session.sessionInstant().atZone(ZoneId.systemDefault())),
+                DISPLAY_FORMAT.format(session.sessionInstant().atZone(clientZone)),
                 session.durationMinutes);
     }
 
-    private String formatSessionDetails(ClientSession session) {
+    private String formatSessionDetails(ClientSession session, ZoneId clientZone) {
         StringBuilder builder = new StringBuilder();
-        ZonedDateTime brazil = session.sessionInstant().atZone(NotificationSettings.from(this).displayZone());
-        builder.append(getString(R.string.session_display_zone_format, DISPLAY_FORMAT.format(brazil)));
+        builder.append(getString(R.string.session_time_zone_format, clientZone.getId()));
         if (session.sessionNotes != null && !session.sessionNotes.trim().isEmpty()) {
             builder.append('\n').append(session.sessionNotes.trim());
         }
         return builder.toString();
+    }
+
+    private ZoneId selectedClientZone() {
+        Client client = selectedClientId == null ? null : db.getClient(selectedClientId);
+        return TimeZoneSupport.zoneId(client == null ? selectedTimeZoneId() : client.timeZoneId);
+    }
+
+    private String selectedTimeZoneId() {
+        if (spinnerClientTimeZone == null || spinnerClientTimeZone.getSelectedItem() == null) {
+            return TimeZoneSupport.DEFAULT_ZONE_ID;
+        }
+
+        return TimeZoneSupport.normalizeZoneId(spinnerClientTimeZone.getSelectedItem().toString());
+    }
+
+    private void setClientTimeZoneSelection(String zoneId) {
+        if (spinnerClientTimeZone != null) {
+            spinnerClientTimeZone.setSelection(TimeZoneSupport.indexOf(zoneId));
+        }
+    }
+
+    private Spinner timeZoneSpinner(String selectedZoneId) {
+        Spinner spinner = new Spinner(this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                TimeZoneSupport.availableZoneIds());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(TimeZoneSupport.indexOf(selectedZoneId));
+        spinner.setPrompt(getString(R.string.hint_client_time_zone));
+        UiKit.styleSpinner(spinner);
+        LinearLayout.LayoutParams params = fullWidthParams();
+        params.setMargins(0, dp(6), 0, dp(6));
+        spinner.setLayoutParams(params);
+        return spinner;
     }
 
     private static String formatDateOnly(String isoDate) {
@@ -579,6 +634,22 @@ public final class MainActivity extends Activity {
         title.setText(textResId);
         UiKit.styleSectionTitle(title, iconResId);
         root.addView(title);
+    }
+
+    private void addFieldLabel(LinearLayout root, int textResId, int iconResId) {
+        TextView label = new TextView(this);
+        label.setText(textResId);
+        label.setTextColor(UiKit.COLOR_MUTED);
+        label.setTextSize(13);
+        label.setGravity(Gravity.CENTER_VERTICAL);
+        label.setPadding(dp(4), dp(10), dp(4), 0);
+        label.setCompoundDrawablePadding(dp(8));
+        label.setCompoundDrawablesRelative(
+                UiKit.icon(this, iconResId, UiKit.COLOR_MUTED, 18),
+                null,
+                null,
+                null);
+        root.addView(label, fullWidthParams());
     }
 
     private TextView rowText(String title, String details, int iconResId, boolean selected) {

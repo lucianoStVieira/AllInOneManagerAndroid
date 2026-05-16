@@ -156,7 +156,7 @@ public final class SessionReminderReceiver extends BroadcastReceiver {
             Context context,
             ReminderInfo info,
             NotificationSettings settings) {
-        ZonedDateTime localStart = info.sessionInstant().atZone(settings.displayZone());
+        ZonedDateTime localStart = info.sessionInstant().atZone(info.clientZone());
         Duration offset = settings.notificationOffsetFromSessionStart();
         String timing = offset.isNegative()
                 ? context.getString(R.string.notification_before_session_format, formatOffset(context, offset))
@@ -183,7 +183,7 @@ public final class SessionReminderReceiver extends BroadcastReceiver {
             Context context,
             ReminderInfo info,
             NotificationSettings settings) {
-        ZonedDateTime localStart = info.sessionInstant().atZone(settings.displayZone());
+        ZonedDateTime localStart = info.sessionInstant().atZone(info.clientZone());
         Duration offset = settings.notificationOffsetFromSessionStart();
         String whenLine = offset.isNegative()
                 ? context.getString(R.string.notification_client_reminder_before_format, formatOffset(context, offset))

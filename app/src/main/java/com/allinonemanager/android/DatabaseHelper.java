@@ -12,7 +12,7 @@ import java.util.List;
 
 public final class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "psychologist_clients.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,6 +33,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
                         + "Phone TEXT,"
                         + "Email TEXT,"
                         + "DateOfBirth TEXT,"
+                        + "TimeZoneId TEXT NOT NULL DEFAULT '" + TimeZoneSupport.DEFAULT_ZONE_ID + "',"
                         + "Notes TEXT,"
                         + "CreatedAt TEXT NOT NULL"
                         + ");");
@@ -59,17 +60,33 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion < 2) {
+            ensureClientTimeZoneColumn(db);
+        }
         onCreate(db);
     }
 
-    public long addClient(String fullName, String phone, String email, String dateOfBirth, String notes) {
-        ContentValues values = clientValues(fullName, phone, email, dateOfBirth, notes);
+    public long addClient(
+            String fullName,
+            String phone,
+            String email,
+            String dateOfBirth,
+            String timeZoneId,
+            String notes) {
+        ContentValues values = clientValues(fullName, phone, email, dateOfBirth, timeZoneId, notes);
         values.put("CreatedAt", Instant.now().toString());
         return getWritableDatabase().insertOrThrow("Clients", null, values);
     }
 
-    public boolean updateClient(long id, String fullName, String phone, String email, String dateOfBirth, String notes) {
-        ContentValues values = clientValues(fullName, phone, email, dateOfBirth, notes);
+    public boolean updateClient(
+            long id,
+            String fullName,
+            String phone,
+            String email,
+            String dateOfBirth,
+            String timeZoneId,
+            String notes) {
+        ContentValues values = clientValues(fullName, phone, email, dateOfBirth, timeZoneId, notes);
         int updated = getWritableDatabase().update("Clients", values, "Id = ?", new String[] { String.valueOf(id) });
         return updated > 0;
     }
@@ -81,7 +98,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Client> getClients(String searchTerm) {
         StringBuilder sql = new StringBuilder(
-                "SELECT Id, FullName, Phone, Email, DateOfBirth, Notes, CreatedAt FROM Clients");
+                "SELECT Id, FullName, Phone, Email, DateOfBirth, TimeZoneId, Notes, CreatedAt FROM Clients");
         String[] args = null;
 
         String search = safe(searchTerm).trim();
@@ -105,7 +122,8 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
 
     public Client getClient(long id) {
         try (Cursor cursor = getReadableDatabase().rawQuery(
-                "SELECT Id, FullName, Phone, Email, DateOfBirth, Notes, CreatedAt FROM Clients WHERE Id = ?;",
+                "SELECT Id, FullName, Phone, Email, DateOfBirth, TimeZoneId, Notes, CreatedAt "
+                        + "FROM Clients WHERE Id = ?;",
                 new String[] { String.valueOf(id) })) {
             return cursor.moveToFirst() ? readClient(cursor) : null;
         }
@@ -147,7 +165,8 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
         String from = Instant.now().minusSeconds(24L * 60L * 60L).toString();
         List<ReminderInfo> sessions = new ArrayList<>();
         try (Cursor cursor = getReadableDatabase().rawQuery(
-                "SELECT s.Id, s.ClientId, s.SessionAt, s.DurationMinutes, s.SessionNotes, c.FullName, c.Phone "
+                "SELECT s.Id, s.ClientId, s.SessionAt, s.DurationMinutes, s.SessionNotes, "
+                        + "c.FullName, c.Phone, c.TimeZoneId "
                         + "FROM Sessions s INNER JOIN Clients c ON c.Id = s.ClientId "
                         + "WHERE s.SessionAt >= ? ORDER BY datetime(s.SessionAt);",
                 new String[] { from })) {
@@ -161,7 +180,8 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
 
     public ReminderInfo getReminderInfo(long sessionId) {
         try (Cursor cursor = getReadableDatabase().rawQuery(
-                "SELECT s.Id, s.ClientId, s.SessionAt, s.DurationMinutes, s.SessionNotes, c.FullName, c.Phone "
+                "SELECT s.Id, s.ClientId, s.SessionAt, s.DurationMinutes, s.SessionNotes, "
+                        + "c.FullName, c.Phone, c.TimeZoneId "
                         + "FROM Sessions s INNER JOIN Clients c ON c.Id = s.ClientId WHERE s.Id = ?;",
                 new String[] { String.valueOf(sessionId) })) {
             return cursor.moveToFirst() ? readReminderInfo(cursor) : null;
@@ -193,12 +213,14 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
             String phone,
             String email,
             String dateOfBirth,
+            String timeZoneId,
             String notes) {
         ContentValues values = new ContentValues();
         values.put("FullName", safe(fullName).trim());
         values.put("Phone", safe(phone).trim());
         values.put("Email", safe(email).trim());
         values.put("DateOfBirth", safe(dateOfBirth).trim());
+        values.put("TimeZoneId", TimeZoneSupport.normalizeZoneId(timeZoneId));
         values.put("Notes", safe(notes).trim());
         return values;
     }
@@ -210,6 +232,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
                 getString(cursor, "Phone"),
                 getString(cursor, "Email"),
                 getString(cursor, "DateOfBirth"),
+                getString(cursor, "TimeZoneId"),
                 getString(cursor, "Notes"),
                 getString(cursor, "CreatedAt"));
     }
@@ -232,7 +255,23 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getInt(3),
                 cursor.isNull(4) ? "" : cursor.getString(4),
                 cursor.isNull(5) ? "Client" : cursor.getString(5),
-                cursor.isNull(6) ? "" : cursor.getString(6));
+                cursor.isNull(6) ? "" : cursor.getString(6),
+                cursor.isNull(7) ? TimeZoneSupport.DEFAULT_ZONE_ID : cursor.getString(7));
+    }
+
+    private static void ensureClientTimeZoneColumn(SQLiteDatabase db) {
+        try (Cursor cursor = db.rawQuery("PRAGMA table_info(Clients);", null)) {
+            while (cursor.moveToNext()) {
+                if ("TimeZoneId".equalsIgnoreCase(cursor.getString(cursor.getColumnIndexOrThrow("name")))) {
+                    return;
+                }
+            }
+        }
+
+        db.execSQL(
+                "ALTER TABLE Clients ADD COLUMN TimeZoneId TEXT NOT NULL DEFAULT '"
+                        + TimeZoneSupport.DEFAULT_ZONE_ID
+                        + "';");
     }
 
     private static String getString(Cursor cursor, String column) {

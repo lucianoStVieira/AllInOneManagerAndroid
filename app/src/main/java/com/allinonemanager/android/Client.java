@@ -6,6 +6,7 @@ public final class Client {
     public final String phone;
     public final String email;
     public final String dateOfBirth;
+    public final String timeZoneId;
     public final String notes;
     public final String createdAt;
 
@@ -15,6 +16,7 @@ public final class Client {
             String phone,
             String email,
             String dateOfBirth,
+            String timeZoneId,
             String notes,
             String createdAt) {
         this.id = id;
@@ -22,6 +24,7 @@ public final class Client {
         this.phone = phone;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
+        this.timeZoneId = TimeZoneSupport.normalizeZoneId(timeZoneId);
         this.notes = notes;
         this.createdAt = createdAt;
     }

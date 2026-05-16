@@ -45,9 +45,9 @@ string error_duration_number
 string error_duration_range
 string error_time_format
 string hint_alert_minutes
+string hint_client_time_zone
 string hint_date_of_birth
 string hint_default_country_prefix
-string hint_display_time_zone
 string hint_duration_minutes
 string hint_email
 string hint_full_name
@@ -98,7 +98,7 @@ string section_timing
 string section_twilio_sms
 string section_whatsapp
 string selected_client_format
-string session_display_zone_format
+string session_time_zone_format
 string session_title_format
 string setting_save_sms
 string setting_send_client_sms
@@ -107,6 +107,7 @@ string setting_send_whatsapp
 string settings_title
 string summary_born_format
 string summary_no_phone_email
+string summary_time_zone_format
 string text_select_client_schedule
 string timing_after_session
 string timing_before_session
