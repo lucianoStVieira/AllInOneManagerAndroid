@@ -1,6 +1,9 @@
 package com.allinonemanager.android;
 
+import java.time.Instant;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,13 +11,19 @@ import java.util.List;
 final class TimeZoneSupport {
     static final String DEFAULT_ZONE_ID = "America/Sao_Paulo";
 
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     private static final List<String> AVAILABLE_ZONE_IDS = buildAvailableZoneIds();
 
     private TimeZoneSupport() {
     }
 
-    static List<String> availableZoneIds() {
-        return AVAILABLE_ZONE_IDS;
+    static List<TimeZoneOption> availableZoneOptions() {
+        Instant now = Instant.now();
+        List<TimeZoneOption> options = new ArrayList<>();
+        for (String zoneId : AVAILABLE_ZONE_IDS) {
+            options.add(new TimeZoneOption(zoneId, displayLabel(zoneId, now)));
+        }
+        return Collections.unmodifiableList(options);
     }
 
     static int indexOf(String zoneId) {
@@ -45,12 +54,39 @@ final class TimeZoneSupport {
 
     private static List<String> buildAvailableZoneIds() {
         List<String> zones = new ArrayList<>(ZoneId.getAvailableZoneIds());
-        Collections.sort(zones);
         if (!zones.contains(DEFAULT_ZONE_ID)) {
             zones.add(DEFAULT_ZONE_ID);
-            Collections.sort(zones);
         }
+        Instant now = Instant.now();
+        Collections.sort(zones, (left, right) -> {
+            int leftOffset = ZoneId.of(left).getRules().getOffset(now).getTotalSeconds();
+            int rightOffset = ZoneId.of(right).getRules().getOffset(now).getTotalSeconds();
+            int byOffset = Integer.compare(leftOffset, rightOffset);
+            return byOffset == 0 ? left.compareTo(right) : byOffset;
+        });
         return Collections.unmodifiableList(zones);
+    }
+
+    private static String displayLabel(String zoneId, Instant now) {
+        ZoneId zone = zoneId(zoneId);
+        ZoneOffset offset = zone.getRules().getOffset(now);
+        return "(" + formatOffset(offset) + ") "
+                + zone.getId()
+                + " - "
+                + TIME_FORMAT.format(now.atZone(zone));
+    }
+
+    private static String formatOffset(ZoneOffset offset) {
+        int totalMinutes = offset.getTotalSeconds() / 60;
+        char sign = totalMinutes < 0 ? '-' : '+';
+        int absoluteMinutes = Math.abs(totalMinutes);
+        int hours = absoluteMinutes / 60;
+        int minutes = absoluteMinutes % 60;
+        return "UTC" + sign + twoDigits(hours) + ":" + twoDigits(minutes);
+    }
+
+    private static String twoDigits(int value) {
+        return value < 10 ? "0" + value : String.valueOf(value);
     }
 
     private static String mapWindowsTimeZone(String id) {
@@ -63,5 +99,24 @@ final class TimeZoneSupport {
         }
 
         return id;
+    }
+
+    static final class TimeZoneOption {
+        private final String zoneId;
+        private final String label;
+
+        TimeZoneOption(String zoneId, String label) {
+            this.zoneId = normalizeZoneId(zoneId);
+            this.label = label;
+        }
+
+        String zoneId() {
+            return zoneId;
+        }
+
+        @Override
+        public String toString() {
+            return label;
+        }
     }
 }

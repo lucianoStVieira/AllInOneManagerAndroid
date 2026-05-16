@@ -487,7 +487,12 @@ public final class MainActivity extends Activity {
             return TimeZoneSupport.DEFAULT_ZONE_ID;
         }
 
-        return TimeZoneSupport.normalizeZoneId(spinnerClientTimeZone.getSelectedItem().toString());
+        Object selected = spinnerClientTimeZone.getSelectedItem();
+        if (selected instanceof TimeZoneSupport.TimeZoneOption) {
+            return ((TimeZoneSupport.TimeZoneOption) selected).zoneId();
+        }
+
+        return TimeZoneSupport.normalizeZoneId(selected.toString());
     }
 
     private void setClientTimeZoneSelection(String zoneId) {
@@ -498,10 +503,10 @@ public final class MainActivity extends Activity {
 
     private Spinner timeZoneSpinner(String selectedZoneId) {
         Spinner spinner = new Spinner(this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+        ArrayAdapter<TimeZoneSupport.TimeZoneOption> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
-                TimeZoneSupport.availableZoneIds());
+                TimeZoneSupport.availableZoneOptions());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setSelection(TimeZoneSupport.indexOf(selectedZoneId));

@@ -22,7 +22,6 @@
         android:localeConfig="@xml/locales_config"
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.allinonemanager.android.SettingsActivity"
