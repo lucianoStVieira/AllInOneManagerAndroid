@@ -165,10 +165,13 @@ public final class MainActivity extends Activity {
 
         LinearLayout clientButtons = horizontal();
         clientButtons.setGravity(Gravity.CENTER_VERTICAL);
+        Button addClient = UiKit.compactPrimaryButton(this, R.string.action_add, R.drawable.ic_add_24);
+        addClient.setOnClickListener(v -> clearClientForm());
         Button saveClient = UiKit.compactPrimaryButton(this, R.string.action_save, R.drawable.ic_save_24);
         saveClient.setOnClickListener(v -> saveClient());
         Button deleteClient = UiKit.compactDangerButton(this, R.string.action_delete, R.drawable.ic_delete_24);
         deleteClient.setOnClickListener(v -> deleteClient());
+        addCompact(clientButtons, addClient);
         addCompact(clientButtons, saveClient);
         addCompact(clientButtons, deleteClient);
         root.addView(clientButtons);
