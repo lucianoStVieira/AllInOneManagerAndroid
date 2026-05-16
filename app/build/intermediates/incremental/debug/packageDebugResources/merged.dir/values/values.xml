@@ -13,6 +13,7 @@
         <item quantity="other">%1$d seconds</item>
     </plurals>
     <string name="action_add">Add</string>
+    <string name="action_android_auth">Use Android authentication</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_clear">Clear</string>
     <string name="action_clear_notes">Clear Notes</string>
@@ -22,6 +23,8 @@
     <string name="action_settings">Settings</string>
     <string name="action_unlock">Unlock</string>
     <string name="action_update">Update</string>
+    <string name="android_auth_subtitle">Use your device authentication method.</string>
+    <string name="android_auth_title">Unlock AllInOneManager</string>
     <string name="app_name">AllInOneManager</string>
     <string name="dialog_delete_client_message">Delete selected client?</string>
     <string name="dialog_delete_client_title">Delete Client</string>
@@ -106,6 +109,7 @@
     <string name="timing_after_session">After session starts</string>
     <string name="timing_before_session">Before session starts</string>
     <string name="toast_access_created">Access password created.</string>
+    <string name="toast_android_auth_unavailable">Android authentication is not available on this device.</string>
     <string name="toast_client_updated">Client updated.</string>
     <string name="toast_full_name_required">Full name is required.</string>
     <string name="toast_login_failed">Incorrect password.</string>

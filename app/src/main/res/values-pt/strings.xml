@@ -55,11 +55,15 @@
     <string name="hint_access_password">Senha</string>
     <string name="hint_confirm_password">Confirmar senha</string>
     <string name="action_unlock">Desbloquear</string>
+    <string name="action_android_auth">Usar autentica&#231;&#227;o do Android</string>
+    <string name="android_auth_title">Desbloquear AllInOneManager</string>
+    <string name="android_auth_subtitle">Use o m&#233;todo de autentica&#231;&#227;o do dispositivo.</string>
     <string name="toast_password_required">A senha é obrigatória.</string>
     <string name="toast_password_short">Use pelo menos 4 caracteres.</string>
     <string name="toast_password_mismatch">As senhas não correspondem.</string>
     <string name="toast_login_failed">Senha incorreta.</string>
     <string name="toast_access_created">Senha de acesso criada.</string>
+    <string name="toast_android_auth_unavailable">A autentica&#231;&#227;o do Android n&#227;o est&#225; dispon&#237;vel neste dispositivo.</string>
     <string name="section_language">Idioma</string>
     <string name="language_system_default">Padrão do sistema</string>
     <string name="language_english">Inglês</string>

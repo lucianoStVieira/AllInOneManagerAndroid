@@ -24,6 +24,7 @@ plurals duration_hours
 plurals duration_minutes
 plurals duration_seconds
 string action_add
+string action_android_auth
 string action_cancel
 string action_clear
 string action_clear_notes
@@ -33,6 +34,8 @@ string action_schedule
 string action_settings
 string action_unlock
 string action_update
+string android_auth_subtitle
+string android_auth_title
 string app_name
 string dialog_delete_client_message
 string dialog_delete_client_title
@@ -117,6 +120,7 @@ string text_select_client_schedule
 string timing_after_session
 string timing_before_session
 string toast_access_created
+string toast_android_auth_unavailable
 string toast_client_updated
 string toast_full_name_required
 string toast_login_failed

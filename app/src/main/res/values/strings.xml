@@ -55,11 +55,15 @@
     <string name="hint_access_password">Password</string>
     <string name="hint_confirm_password">Confirm password</string>
     <string name="action_unlock">Unlock</string>
+    <string name="action_android_auth">Use Android authentication</string>
+    <string name="android_auth_title">Unlock AllInOneManager</string>
+    <string name="android_auth_subtitle">Use your device authentication method.</string>
     <string name="toast_password_required">Password is required.</string>
     <string name="toast_password_short">Use at least 4 characters.</string>
     <string name="toast_password_mismatch">Passwords do not match.</string>
     <string name="toast_login_failed">Incorrect password.</string>
     <string name="toast_access_created">Access password created.</string>
+    <string name="toast_android_auth_unavailable">Android authentication is not available on this device.</string>
     <string name="section_language">Language</string>
     <string name="language_system_default">System default</string>
     <string name="language_english">English</string>

@@ -22,6 +22,7 @@ int plurals duration_hours 0x7f020000
 int plurals duration_minutes 0x7f020001
 int plurals duration_seconds 0x7f020002
 int string action_add 0x7f030000
+int string action_android_auth 0x7f030069
 int string action_cancel 0x7f030001
 int string action_clear 0x7f030002
 int string action_clear_notes 0x7f030003
@@ -31,6 +32,8 @@ int string action_schedule 0x7f030006
 int string action_settings 0x7f030007
 int string action_unlock 0x7f030008
 int string action_update 0x7f030009
+int string android_auth_subtitle 0x7f03006a
+int string android_auth_title 0x7f03006b
 int string app_name 0x7f03000a
 int string dialog_delete_client_message 0x7f03000b
 int string dialog_delete_client_title 0x7f03000c
@@ -115,6 +118,7 @@ int string text_select_client_schedule 0x7f03005a
 int string timing_after_session 0x7f03005b
 int string timing_before_session 0x7f03005c
 int string toast_access_created 0x7f03005d
+int string toast_android_auth_unavailable 0x7f03006c
 int string toast_client_updated 0x7f03005e
 int string toast_full_name_required 0x7f03005f
 int string toast_login_failed 0x7f030060

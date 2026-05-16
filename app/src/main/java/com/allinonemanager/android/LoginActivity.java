@@ -1,9 +1,16 @@
 package com.allinonemanager.android;
 
 import android.app.Activity;
+import android.app.KeyguardManager;
+import android.hardware.biometrics.BiometricManager;
+import android.hardware.biometrics.BiometricPrompt;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CancellationSignal;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -15,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public final class LoginActivity extends Activity {
+    private static final int REQUEST_ANDROID_AUTH = 3001;
     private static final int MIN_PASSWORD_LENGTH = 4;
 
     private boolean createMode;
@@ -83,6 +91,17 @@ public final class LoginActivity extends Activity {
         LinearLayout.LayoutParams buttonParams = fullWidthParams();
         buttonParams.setMargins(0, dp(8), 0, 0);
         root.addView(access, buttonParams);
+
+        if (!createMode && canUseAndroidAuthentication()) {
+            Button androidAuth = UiKit.neutralTextButton(
+                    this,
+                    R.string.action_android_auth,
+                    R.drawable.ic_key_24);
+            androidAuth.setOnClickListener(v -> authenticateWithAndroid());
+            LinearLayout.LayoutParams androidAuthParams = fullWidthParams();
+            androidAuthParams.setMargins(0, dp(8), 0, 0);
+            root.addView(androidAuth, androidAuthParams);
+        }
     }
 
     private void submit() {
@@ -128,6 +147,86 @@ public final class LoginActivity extends Activity {
         }
 
         openMain();
+    }
+
+    private boolean canUseAndroidAuthentication() {
+        KeyguardManager manager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        return manager != null && manager.isDeviceSecure();
+    }
+
+    private void authenticateWithAndroid() {
+        if (!canUseAndroidAuthentication()) {
+            toast(R.string.toast_android_auth_unavailable);
+            return;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            showBiometricPrompt();
+        } else {
+            showDeviceCredentialPrompt();
+        }
+    }
+
+    private void showBiometricPrompt() {
+        BiometricPrompt.Builder builder = new BiometricPrompt.Builder(this)
+                .setTitle(getString(R.string.android_auth_title))
+                .setSubtitle(getString(R.string.android_auth_subtitle));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            builder.setAllowedAuthenticators(
+                    BiometricManager.Authenticators.BIOMETRIC_STRONG
+                            | BiometricManager.Authenticators.DEVICE_CREDENTIAL);
+        } else {
+            builder.setDeviceCredentialAllowed(true);
+        }
+
+        CancellationSignal cancellationSignal = new CancellationSignal();
+        Handler handler = new Handler(Looper.getMainLooper());
+        builder.build().authenticate(
+                cancellationSignal,
+                command -> handler.post(command),
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        AccessManager.unlockWithSystemAuthentication();
+                        openMain();
+                    }
+
+                    @Override
+                    public void onAuthenticationError(int errorCode, CharSequence errString) {
+                        if (errString != null && errString.length() > 0) {
+                            Toast.makeText(LoginActivity.this, errString, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void showDeviceCredentialPrompt() {
+        KeyguardManager manager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        Intent intent = manager == null ? null : manager.createConfirmDeviceCredentialIntent(
+                getString(R.string.android_auth_title),
+                getString(R.string.android_auth_subtitle));
+        if (intent == null) {
+            toast(R.string.toast_android_auth_unavailable);
+            return;
+        }
+
+        startActivityForResult(intent, REQUEST_ANDROID_AUTH);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode != REQUEST_ANDROID_AUTH) {
+            return;
+        }
+
+        if (resultCode == RESULT_OK) {
+            AccessManager.unlockWithSystemAuthentication();
+            openMain();
+        } else {
+            toast(R.string.toast_login_failed);
+        }
     }
 
     private void openMain() {

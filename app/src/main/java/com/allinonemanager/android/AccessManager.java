@@ -38,6 +38,10 @@ final class AccessManager {
         unlocked = false;
     }
 
+    static void unlockWithSystemAuthentication() {
+        unlocked = true;
+    }
+
     static void createPassword(Context context, String password) {
         byte[] salt = new byte[SALT_BYTES];
         new SecureRandom().nextBytes(salt);
