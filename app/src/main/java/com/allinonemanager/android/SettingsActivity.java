@@ -182,12 +182,13 @@ public final class SettingsActivity extends Activity {
         root.addView(txtTwilioMessagingService);
 
         LinearLayout buttons = horizontal();
-        Button save = UiKit.primaryButton(this, R.string.action_save, R.drawable.ic_save_24);
+        buttons.setGravity(Gravity.CENTER);
+        Button save = UiKit.compactPrimaryButton(this, R.string.action_save, R.drawable.ic_save_24);
         save.setOnClickListener(v -> saveSettings());
-        Button cancel = UiKit.neutralButton(this, R.string.action_cancel, R.drawable.ic_clear_24);
+        Button cancel = UiKit.compactNeutralButton(this, R.string.action_cancel, R.drawable.ic_clear_24);
         cancel.setOnClickListener(v -> finish());
-        addWeighted(buttons, save);
-        addWeighted(buttons, cancel);
+        addCompact(buttons, save);
+        addCompact(buttons, cancel);
         root.addView(buttons);
     }
 
@@ -262,6 +263,12 @@ public final class SettingsActivity extends Activity {
                 0,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 1f);
+        params.setMargins(dp(3), dp(6), dp(3), dp(6));
+        row.addView(view, params);
+    }
+
+    private void addCompact(LinearLayout row, View view) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dp(42), dp(42));
         params.setMargins(dp(3), dp(6), dp(3), dp(6));
         row.addView(view, params);
     }
