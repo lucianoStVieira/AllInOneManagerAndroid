@@ -31,6 +31,7 @@ string action_delete
 string action_save
 string action_schedule
 string action_settings
+string action_unlock
 string action_update
 string app_name
 string dialog_delete_client_message
@@ -44,8 +45,10 @@ string error_date_format
 string error_duration_number
 string error_duration_range
 string error_time_format
+string hint_access_password
 string hint_alert_minutes
 string hint_client_time_zone
+string hint_confirm_password
 string hint_date_of_birth
 string hint_default_country_prefix
 string hint_duration_minutes
@@ -67,6 +70,8 @@ string hint_twilio_messaging_service
 string language_english
 string language_portuguese
 string language_system_default
+string login_create_title
+string login_unlock_title
 string main_title
 string notification_after_session_format
 string notification_before_session_format
@@ -111,8 +116,13 @@ string summary_time_zone_format
 string text_select_client_schedule
 string timing_after_session
 string timing_before_session
+string toast_access_created
 string toast_client_updated
 string toast_full_name_required
+string toast_login_failed
+string toast_password_mismatch
+string toast_password_required
+string toast_password_short
 string toast_select_client_delete
 string toast_select_client_schedule
 string toast_select_client_update

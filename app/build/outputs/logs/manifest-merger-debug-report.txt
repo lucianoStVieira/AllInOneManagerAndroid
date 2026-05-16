@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:1:1-41:12
-INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:1:1-41:12
-INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:1:1-41:12
-INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:1:1-41:12
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:1:1-46:12
+INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:1:1-46:12
+INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:1:1-46:12
+INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:1:1-46:12
 	package
 		INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -29,8 +29,8 @@ ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:5:5-79
 	android:name
 		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:5:22-76
 application
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:7:5-40:19
-INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:7:5-40:19
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:7:5-45:19
+INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:7:5-45:19
 	android:extractNativeLibs
 		INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml
 	android:localeConfig
@@ -54,41 +54,49 @@ ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:15:9-1
 	android:name
 		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:16:13-45
 activity#com.allinonemanager.android.MainActivity
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:19:9-27:20
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:19:9-22:52
 	android:screenOrientation
 		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:22:13-49
 	android:exported
-		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:21:13-36
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:21:13-37
 	android:name
 		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:20:13-41
+activity#com.allinonemanager.android.LoginActivity
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:24:9-32:20
+	android:screenOrientation
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:27:13-49
+	android:exported
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:26:13-36
+	android:name
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:25:13-42
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:23:13-26:29
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:28:13-31:29
 action#android.intent.action.MAIN
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:24:17-69
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:29:17-69
 	android:name
-		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:24:25-66
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:29:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:25:17-77
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:30:17-77
 	android:name
-		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:25:27-74
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:30:27-74
 receiver#com.allinonemanager.android.SessionReminderReceiver
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:29:9-31:40
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:34:9-36:40
 	android:exported
-		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:31:13-37
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:36:13-37
 	android:name
-		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:30:13-52
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:35:13-52
 receiver#com.allinonemanager.android.BootReceiver
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:33:9-39:20
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:38:9-44:20
 	android:exported
-		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:35:13-36
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:40:13-36
 	android:name
-		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:34:13-41
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:39:13-41
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:36:13-38:29
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:41:13-43:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:37:17-79
+ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:42:17-79
 	android:name
-		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:37:25-76
+		ADDED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml:42:25-76
 uses-sdk
 INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Dev\AllInOneManagerAndroid\app\src\main\AndroidManifest.xml

@@ -72,6 +72,12 @@ public final class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!AccessManager.isUnlocked()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
         UiKit.applyWindow(this);
         languageSelectionAtCreate = AppLanguage.selectedLanguageTag(this);
         db = new DatabaseHelper(this);

@@ -20,6 +20,7 @@
     <string name="action_save">Salvar</string>
     <string name="action_schedule">Agendar</string>
     <string name="action_settings">Configurações</string>
+    <string name="action_unlock">Desbloquear</string>
     <string name="action_update">Atualizar</string>
     <string name="app_name">AllInOneManager</string>
     <string name="dialog_delete_client_message">Excluir o cliente selecionado?</string>
@@ -33,8 +34,10 @@
     <string name="error_duration_number">A duração deve ser um número.</string>
     <string name="error_duration_range">A duração deve ficar entre 15 e 240 minutos.</string>
     <string name="error_time_format">Use o formato de horário HH:mm.</string>
+    <string name="hint_access_password">Senha</string>
     <string name="hint_alert_minutes">Minutos do alerta</string>
     <string name="hint_client_time_zone">Fuso horário do cliente</string>
+    <string name="hint_confirm_password">Confirmar senha</string>
     <string name="hint_date_of_birth">Data de nascimento (aaaa-MM-dd)</string>
     <string name="hint_default_country_prefix">Prefixo internacional padrão</string>
     <string name="hint_duration_minutes">Duração em minutos</string>
@@ -56,6 +59,8 @@
     <string name="language_english">Inglês</string>
     <string name="language_portuguese">Português</string>
     <string name="language_system_default">Padrão do sistema</string>
+    <string name="login_create_title">Criar senha de acesso</string>
+    <string name="login_unlock_title">Digite a senha de acesso</string>
     <string name="main_title">Cadastro de clientes</string>
     <string name="notification_after_session_format">%1$s depois do início da sessão</string>
     <string name="notification_before_session_format">%1$s antes da sessão</string>
@@ -100,8 +105,13 @@
     <string name="text_select_client_schedule">Selecione um cliente para agendar sessões.</string>
     <string name="timing_after_session">Depois do início da sessão</string>
     <string name="timing_before_session">Antes do início da sessão</string>
+    <string name="toast_access_created">Senha de acesso criada.</string>
     <string name="toast_client_updated">Cliente atualizado.</string>
     <string name="toast_full_name_required">O nome completo é obrigatório.</string>
+    <string name="toast_login_failed">Senha incorreta.</string>
+    <string name="toast_password_mismatch">As senhas não correspondem.</string>
+    <string name="toast_password_required">A senha é obrigatória.</string>
+    <string name="toast_password_short">Use pelo menos 4 caracteres.</string>
     <string name="toast_select_client_delete">Selecione um cliente para excluir.</string>
     <string name="toast_select_client_schedule">Selecione um cliente antes de agendar uma sessão.</string>
     <string name="toast_select_client_update">Selecione um cliente para atualizar.</string>

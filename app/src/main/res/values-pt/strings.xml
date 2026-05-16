@@ -50,6 +50,16 @@
     <string name="toast_session_scheduled">Sessão agendada.</string>
 
     <string name="settings_title">Configurações de notificação</string>
+    <string name="login_create_title">Criar senha de acesso</string>
+    <string name="login_unlock_title">Digite a senha de acesso</string>
+    <string name="hint_access_password">Senha</string>
+    <string name="hint_confirm_password">Confirmar senha</string>
+    <string name="action_unlock">Desbloquear</string>
+    <string name="toast_password_required">A senha é obrigatória.</string>
+    <string name="toast_password_short">Use pelo menos 4 caracteres.</string>
+    <string name="toast_password_mismatch">As senhas não correspondem.</string>
+    <string name="toast_login_failed">Senha incorreta.</string>
+    <string name="toast_access_created">Senha de acesso criada.</string>
     <string name="section_language">Idioma</string>
     <string name="language_system_default">Padrão do sistema</string>
     <string name="language_english">Inglês</string>
